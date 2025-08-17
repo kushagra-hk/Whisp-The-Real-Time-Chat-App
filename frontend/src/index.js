@@ -1,21 +1,20 @@
 // @ts-nocheck
 
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter } from "react-router-dom";
 import ChatProvider from "./Context/Chatprovider";
 
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+ReactDOM.render(
   <BrowserRouter>
-  <ChatProvider>
+    <ChatProvider>
       <ChakraProvider>
         <App />
       </ChakraProvider>
-  </ChatProvider>
-    </BrowserRouter>
+    </ChatProvider>
+  </BrowserRouter>,
+  document.getElementById("root")
 );
