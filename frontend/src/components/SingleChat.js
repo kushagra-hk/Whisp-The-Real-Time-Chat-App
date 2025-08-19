@@ -15,7 +15,9 @@ import Lottie from "react-lottie";
 import io from "socket.io-client";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import { ChatState } from "../Context/Chatprovider";
-const ENDPOINT = "http://localhost:5000"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
+const ENDPOINT = "http://localhost:5000"; 
+
+
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
@@ -38,7 +40,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
 
 
-  const { selectedChat, setSelectedChat, user /*,notification, setNotification*/ } = ChatState();
+  const { selectedChat, setSelectedChat, user ,notification, setNotification } = ChatState();
 
   const fetchMessages = async () => {
     if (!selectedChat) return;
@@ -137,10 +139,10 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         !selectedChatCompare || // if chat is not selected or doesn't match current chat
         selectedChatCompare._id !== newMessageRecieved.chat._id
       ) {
-        // if (!notification.includes(newMessageRecieved)) {
-        //   setNotification([newMessageRecieved, ...notification]);
-        //   setFetchAgain(!fetchAgain);
-        // }
+         if (!notification.includes(newMessageRecieved)) {
+           setNotification([newMessageRecieved, ...notification]);
+           setFetchAgain(!fetchAgain);
+           }
       } else {
         setMessages([...messages, newMessageRecieved]);
       }
